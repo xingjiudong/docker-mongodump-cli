@@ -4,7 +4,7 @@ source env.config
 
 sudo mkdir -p /data
 
-docker run --rm -d --net=host \
+docker run --rm  -d --net=host \
 -v /data:/data \
 -e HOST=${HOST} \
 -e DB=${DB} \
@@ -12,4 +12,4 @@ docker run --rm -d --net=host \
 -e PASSWORD=${PASSWORD} \
 -e AUTHENTICATIONDATABASE=${AUTHENTICATIONDATABASE} \
 -e OUT=${OUT} \
-mongo-backup:latest
+xingjiudong/docker-mongo-backup:latest
