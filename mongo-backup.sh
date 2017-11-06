@@ -4,7 +4,7 @@ source env.config
 
 sudo mkdir -p /data
 
-docker run --rm  -d --net=host \
+docker run --rm  -d --net=host --name=mongo-backup-${HOSTNAME} \
 -v /data:/data \
 -e HOST=${HOST} \
 -e DB=${DB} \
