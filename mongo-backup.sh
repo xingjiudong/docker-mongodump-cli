@@ -2,14 +2,17 @@
 set -e
 source env.config
 
-sudo mkdir -p /data
-
-docker run --rm  -d --net=host --name=mongo-backup-${HOSTNAME} \
--v /data:/data \
--e HOST=${HOST} \
--e DB=${DB} \
--e USERNAME=${USERNAME} \
--e PASSWORD=${PASSWORD} \
--e AUTHENTICATIONDATABASE=${AUTHENTICATIONDATABASE} \
--e OUT=${OUT} \
-xingjiudong/docker-mongo-backup:latest
+docker run --rm -d --net=host --name=mongodump-${HOSTNAME} \
+-v /etc/localtime:/etc/localtime:ro \
+-e MONGO_PORT_27017_TCP_ADDR=${MONGO_PORT_27017_TCP_ADDR} \
+-e MONGO_PORT_27017_TCP_PORT=${MONGO_PORT_27017_TCP_PORT} \
+-e BACKUP_EXPIRE_DAYS=${BACKUP_EXPIRE_DAYS} \
+-e BACKUP_FILE_NAME=${BACKUP_FILE_NAME} \
+-e MONGO_DB_NAMES=${MONGO_DB_NAMES} \
+-e MONGO_USERNAME=${MONGO_USERNAME} \
+-e MONGO_PASSWORD=${MONGO_PASSWORD} \
+-e MONGO_AUTHENTICATIONDATABASE=${MONGO_AUTHENTICATIONDATABASE} \
+-e PUSH_HOST=${PUSH_HOST} \
+-e PUSH_USERNAME=${PUSH_USERNAME} \
+-e PUSH_PASSWORD=${PUSH_PASSWORD} \
+xingjiudong/mongodump no-cron
