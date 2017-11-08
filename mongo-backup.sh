@@ -2,7 +2,7 @@
 set -e
 source env.config
 
-docker run --rm -d --net=host --name=mongodump-${HOSTNAME} \
+docker run -d --net=host --name=mongodump-${HOSTNAME} \
 -v /etc/localtime:/etc/localtime:ro \
 -e MONGO_PORT_27017_TCP_ADDR=${MONGO_PORT_27017_TCP_ADDR} \
 -e MONGO_PORT_27017_TCP_PORT=${MONGO_PORT_27017_TCP_PORT} \
@@ -12,7 +12,4 @@ docker run --rm -d --net=host --name=mongodump-${HOSTNAME} \
 -e MONGO_USERNAME=${MONGO_USERNAME} \
 -e MONGO_PASSWORD=${MONGO_PASSWORD} \
 -e MONGO_AUTHENTICATIONDATABASE=${MONGO_AUTHENTICATIONDATABASE} \
--e FTP_HOST=${FTP_HOST} \
--e FTP__USERNAME=${FTP_USERNAME} \
--e FTP_PASSWORD=${FTP_PASSWORD} \
 xingjiudong/mongodump no-cron
