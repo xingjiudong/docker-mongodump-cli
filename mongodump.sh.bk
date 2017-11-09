@@ -12,4 +12,5 @@ docker run -d --net=host --name=mongodump-${HOSTNAME} \
 -e MONGO_USERNAME=${MONGO_USERNAME} \
 -e MONGO_PASSWORD=${MONGO_PASSWORD} \
 -e MONGO_AUTHENTICATIONDATABASE=${MONGO_AUTHENTICATIONDATABASE} \
-xingjiudong/mongodump no-cron
+-e CRON_SCHEDULE='15 * * * *' \
+xingjiudong/mongodump
