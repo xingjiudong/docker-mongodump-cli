@@ -2,25 +2,24 @@ version: '2.1'
 
 services:
   mongodump:
-    image: xingjiudong/mongodump 
-    restart: unless-stopped 
+    image: xingjiudong/mongodump
+    restart: unless-stopped
     cpu_quota: 90000
     mem_limit: 3000M
     memswap_limit: -1
-    net: "host"
+    network_mode: "host"
     logging:
       driver: "journald"
     dns:
       - ${DNS_SERVER}
     environment:
       - constraint:volume.driver==${VOLUME_DRIVER}
-      - MONGO_PORT_27017_TCP_ADDR=${MONGO_PORT_27017_TCP_ADDR} \
-      - MONGO_PORT_27017_TCP_PORT=${MONGO_PORT_27017_TCP_PORT} \
-      - BACKUP_EXPIRE_DAYS=${BACKUP_EXPIRE_DAYS} \
-      - BACKUP_FILE_NAME=${BACKUP_FILE_NAME} \
-      - MONGO_DB_NAMES=${MONGO_DB_NAMES} \
-      - MONGO_USERNAME=${MONGO_USERNAME} \
-      - MONGO_PASSWORD=${MONGO_PASSWORD} \
-      - MONGO_AUTHENTICATIONDATABASE=${MONGO_AUTHENTICATIONDATABASE} \
-      - CRON_SCHEDULE='15 * * * *' \
-    command:
+      - MONGO_PORT_27017_TCP_ADDR=${MONGO_PORT_27017_TCP_ADDR}
+      - MONGO_PORT_27017_TCP_PORT=${MONGO_PORT_27017_TCP_PORT}
+      - BACKUP_EXPIRE_DAYS=${BACKUP_EXPIRE_DAYS}
+      - BACKUP_FILE_NAME=${BACKUP_FILE_NAME}
+      - MONGO_DB_NAMES=${MONGO_DB_NAMES}
+      - MONGO_USERNAME=${MONGO_USERNAME}
+      - MONGO_PASSWORD=${MONGO_PASSWORD}
+      - MONGO_AUTHENTICATIONDATABASE=${MONGO_AUTHENTICATIONDATABASE}
+      - CRON_SCHEDULE=${CRON_SCHEDULE}
